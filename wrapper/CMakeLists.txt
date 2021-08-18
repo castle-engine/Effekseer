@@ -23,16 +23,16 @@ set_target_properties(wrapper PROPERTIES
 target_include_directories(
     wrapper
     PRIVATE
-    ${CMAKE_SOURCE_DIR}/src/Effekseer
-    ${CMAKE_SOURCE_DIR}/src/EffekseerRendererGL
+    ${CMAKE_SOURCE_DIR}/Dev/Cpp/Effekseer
+    ${CMAKE_SOURCE_DIR}/Dev/Cpp/EffekseerRendererGL
     ${EFK_THIRDPARTY_INCLUDES}
 )
 
 target_link_libraries(
     wrapper
     PRIVATE
-    ${CMAKE_BINARY_DIR}/src/EffekseerRendererGL/libEffekseerRendererGL.a
-    ${CMAKE_BINARY_DIR}/src/Effekseer/libEffekseer.a
+    ${CMAKE_BINARY_DIR}/Dev/Cpp/EffekseerRendererGL/libEffekseerRendererGL.a
+    ${CMAKE_BINARY_DIR}/Dev/Cpp/Effekseer/libEffekseer.a
     Effekseer
     EffekseerRendererGL
 )
