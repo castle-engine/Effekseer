@@ -4,6 +4,9 @@ include(ExternalProject)
 # Solution name
 project(Effekseer)
 
+# For CGE Effekseer compilation, see https://github.com/Kagamma/cge-effekseer
+set(BUILD_SHARED_LIBS ON)
+
 # For MSVC
 if (MSVC)
     option(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC runtime library DLL" OFF)
@@ -372,3 +375,13 @@ if (BUILD_VIEWER)
     set_target_properties (ExternalProject_glfw PROPERTIES FOLDER thirdparty)
     set_target_properties (ExternalProject_OpenSoundMixer PROPERTIES FOLDER thirdparty)
 endif()
+
+# For CGE Effekseer compilation, see https://github.com/Kagamma/cge-effekseer
+option(BUILD_WRAPPER "Build wrapper" ON)
+if (BUILD_WRAPPER)
+    add_subdirectory(wrapper)
+endif()
+
+# For CGE Effekseer compilation on Linux, see https://github.com/Kagamma/cge-effekseer
+set(CMAKE_CXX_FLAGS " -fPIC" ${CMAKE_CXX_FLAGS})
+

@@ -30,7 +30,8 @@ option(USE_INTERNAL_LOADER "Use Internal Loader" ON)
 
 option(USE_OPENGLES2 "Use OpenGL ES2" OFF)
 option(USE_OPENGLES3 "Use OpenGL ES3" OFF)
-option(USE_OPENGL3 "Use OpenGL 3" OFF)
+# For CGE Effekseer compilation on Linux, see https://github.com/Kagamma/cge-effekseer
+option(USE_OPENGL3 "Use OpenGL 3" ON)
 
 if (MSVC)
 option(USE_OPENAL "Use OpenAL" OFF)
