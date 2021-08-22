@@ -26,8 +26,11 @@ public:
 	static void* operator new(size_t size) {
 #if defined(__EMSCRIPTEN__) && __EMSCRIPTEN_minor__ < 38
 		return malloc(size);
-#elif defined(_WIN32)
+#elif defined(_MSC_VER)
 		return _mm_malloc(size, align);
+#elif defined(__MINGW32__)
+		void* ptr = _mm_malloc(size, align);
+		return ptr;
 #else
 		void *ptr = nullptr;
 		posix_memalign(&ptr, align, size);
@@ -37,10 +40,12 @@ public:
 	static void operator delete(void* ptr) {
 #if defined(__EMSCRIPTEN__) && __EMSCRIPTEN_minor__ < 38
 		free(ptr);
-#elif defined(_WIN32)
+#elif defined(_MSC_VER)
 		_mm_free(ptr);
+#elif defined(__MINGW32__)
+	return _mm_free(ptr);
 #else
-		return free(ptr);
+	return free(ptr);
 #endif
 	}
 };
